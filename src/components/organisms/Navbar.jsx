@@ -6,33 +6,34 @@ const Navbar = () => {
   const [isScroll, setIsScroll] = useState(false)
   const [isMobileButtonClicked, setIsMobileButtonClicked] = useState(false)
 
-  // CHANGE NAVBAR COLOR
+  // Dynamic HTML classes variables
+  const navbarClassName = `${ styles.navbar } 
+  ${ isScroll && styles.navbarScrolled } 
+  ${ isMobileButtonClicked && styles.navbarMobileButtonClicked }`
+
+  const navbarMobileButtonClassName = `${ styles.navbarMobileButton } 
+  ${ isMobileButtonClicked && styles.navbarMobileButtonActive }`
+
+  // Change navbar background color on scroll
   const changeNavbarColor = () => {
-    window.scrollY > 0 ?
-    setIsScroll(true)
-    :
-    setIsScroll(false)
+    window.scrollY > 0 ? setIsScroll(true) : setIsScroll(false)
   }
 
+  // useEffect renders once on the page first load
   useEffect(() => {
     window.addEventListener('scroll', changeNavbarColor)
     return () => {
       window.removeEventListener('scroll', changeNavbarColor)
     }
   }, [])
-  // HAMBURGER MENU
-  const tesHamButton = () => {
-
-  }
 
   return(
-    <nav className={`${ styles.navbar } ${ isScroll && styles.navbarScrolled } ${ isMobileButtonClicked && styles.navbarMobileButtonClicked }`}>
+    <nav className={ navbarClassName }>
       <div className={ styles.navbarLogoAndMobileButton }>
         <img alt='logo' className={ styles.navbarLogo } src={ Logo }/>
+        {/* Mobile Button means Hamburger Menu */}
         <div 
-          className={`${styles.navbarMobileButton} ${
-            isMobileButtonClicked && styles.navbarMobileButtonActive
-          }`}
+          className={ navbarMobileButtonClassName }
           onClick={ () => { setIsMobileButtonClicked(!isMobileButtonClicked) } }
         >
           <span className={ styles.navbarMobileBar }/>
@@ -50,7 +51,9 @@ const Navbar = () => {
           <div>D/N</div>
           <div>L</div>
         </div>
-        <div className={ styles.navbarCopyrights }>Copyright 2023. Ciwin, All rights reserved.</div>
+        <div className={ styles.navbarCopyrights }>
+          Copyright 2023. Ciwin, All rights reserved.
+        </div>
       </div>
     </nav>
   )
