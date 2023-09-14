@@ -1,0 +1,92 @@
+@import "styles/variables.scss";
+@import "styles/mixins.scss";
+
+.navbar {
+  @include container($third-color, 5em, 100%);
+  @include ellipsis;
+  border-radius: 0 0 1em 1em;
+  box-shadow: $base-shadow;
+  position: fixed;
+  transition: 0.25s;
+}
+.navbarLogoAndMobileButton, .navbarNavigationButton, .navbarSettings {
+  padding: 1.5em;
+}
+.navbarLogoAndMobileButton {
+  @include flex(row, center, space-between);
+}
+.navbarSettings {
+  @include flex(row, center, space-around);
+  border-radius: 0 0 1em 1em;
+}
+.navbarCopyrights {
+  color: $fourth-color;
+  font-size: 0.75em;
+  text-align: center;
+  width: 100%;
+}
+.navbarLogo {
+  height: 2em;
+  width: 7em;
+}
+.navbarMobileButton {
+  @include flex(column, center, center);
+}
+.navbarMobileButtonClicked {
+  border-radius: 0;
+  height: 100%;
+}
+.navbarMobileBar {
+  background: $first-color;
+  border-radius: 0.5em;
+  height: 0.2em;
+  margin: 0.1em;
+  width: 1.5em;
+  transition: 0.25s ease-in-out;
+}
+.navbarMobileButtonActive .navbarMobileBar:nth-child(2) {
+  opacity: 0;
+}
+.navbarMobileButtonActive .navbarMobileBar:nth-child(1) {
+  transform: translateY(0.4em) rotate(45deg);
+}
+.navbarMobileButtonActive .navbarMobileBar:nth-child(3) {
+  transform: translateY(-0.4em) rotate(-45deg);
+}
+
+@media(min-width: 768px) {
+  .navbar {
+    @include flex(row, center, space-between);
+    background: transparent;
+    box-shadow: none;
+  }
+  .navbarScrolled {
+    background: $third-color;
+    box-shadow: $base-shadow;
+  }
+  .navbarLogoAndMobileButton {
+    width: 15%;
+  }
+  .navbarMobileButton {
+    display: none;
+  }
+  .navbarMobileButtonClicked {
+    height: 5em;
+  }
+  .navbarItems {
+    @include flex(row, center, space-between);
+  }
+  .navbarItems {
+    width: 85%;
+  }
+  .navbarNavigationGroup {
+    @include flex(row, center, center);
+    width: 75%;
+  }
+  .navbarSettings {
+    width: 25%;
+  }
+  .navbarCopyrights {
+    display: none;
+  }
+}

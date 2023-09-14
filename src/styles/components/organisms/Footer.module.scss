@@ -1,0 +1,10 @@
+@import "styles/variables.scss";
+@import "styles/mixins.scss";
+
+.footer {
+  @include container($first-color, 50vh, 100%);
+  @include flex(column, center, center);
+  color: #D7D7D7;
+  border-radius: 1.5em 1.5em 0 0;
+  box-shadow: $base-shadow;
+}

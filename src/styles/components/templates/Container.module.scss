@@ -1,0 +1,11 @@
+@import "styles/variables.scss";
+@import "styles/mixins.scss";
+
+.container {
+  @include container($second-color, 100%, 100%);
+  @include flex(column, center, space-between);
+}
+.containerPage {
+  @include container(transparent, 100vh, 100%);
+  @include flex(row, center, center);
+}
