@@ -1,5 +1,5 @@
-@import './variables.scss';
 @import './mixins.scss';
+@import './variables.scss';
 
 body {
   @include container(transparent, 150vh, 100%);

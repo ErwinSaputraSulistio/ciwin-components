@@ -1,5 +1,5 @@
-@import "styles/variables.scss";
-@import "styles/mixins.scss";
+@import 'styles/mixins.scss';
+@import 'styles/variables.scss';
 
 .navbar {
   @include container($third-color, 5em, 100%);
@@ -11,71 +11,20 @@
   position: fixed;
   transition: 0.25s;
 }
-.navbarLogoAndMobileButton, .navbarNavigationButton, .navbarSettings, .navbarCopyrights {
-  padding: 1.5em;
-}
-.navbarLogoAndMobileButton {
-  @include flex(row, center, space-between);
-  box-sizing: border-box;
-  width: 100%;
-}
-.navbarLogo {
-  height: 2em;
-  width: 7em;
-}
-.navbarMobileButton {
-  @include flex(column, center, center);
-}
 .navbarMobileButtonClicked {
   border-radius: 0;
   height: 100%;
-}
-.navbarMobileBar {
-  background: $first-color;
-  border-radius: 0.5em;
-  height: 0.2em;
-  margin: 0.1em;
-  width: 1.5em;
-}
-.navbarMobileButtonActive .navbarMobileBar:nth-child(2) {
-  opacity: 0;
-}
-.navbarMobileButtonActive .navbarMobileBar:nth-child(1) {
-  transform: translateY(0.4em) rotate(45deg);
-}
-.navbarMobileButtonActive .navbarMobileBar:nth-child(3) {
-  transform: translateY(-0.4em) rotate(-45deg);
-}
-.navbarMobileBar, .navbarNavigationButton {
-  transition: 0.25s ease-in-out;
 }
 .navbarItems {
   @include flex(column, center, center);
   flex-grow: 1;
   width: 100%;
 }
-.navbarSettings {
-  @include flex(row, center, space-around);
-  border-radius: 0 0 1em 1em;
-}
-.navbarSettings, .navbarNavigationGroup {
-  width: 100%;
-}
-.navbarNavigationGroup {
-  @include flex(column, center, center);
-}
-.navbarNavigationButton {
-  text-align: center;
-  width: 100%;
-}
-.navbarNavigationButton:hover {
-  background: $second-color;
-  cursor: pointer;
-}
 .navbarCopyrights {
   color: $fourth-color;
   font-size: 0.75em;
   margin-top: auto;
+  padding: 1.5em;
   text-align: center;
   width: 100%;
 }
@@ -90,12 +39,6 @@
     background: $third-color;
     box-shadow: $base-shadow;
   }
-  .navbarLogoAndMobileButton {
-    width: 15%;
-  }
-  .navbarMobileButton {
-    display: none;
-  }
   .navbarMobileButtonClicked {
     border-radius: 0 0 1em 1em;
     height: 5em;
@@ -103,20 +46,6 @@
   .navbarItems {
     @include flex(row, center, space-between);
     width: 85%;
-  }
-  .navbarNavigationGroup {
-    @include flex(row, center, center);
-    order: 1;
-    width: 85%;
-  }
-  .navbarNavigationButton {
-    border-radius: 0.5em;
-    height: 100%;
-    width: 15%;
-  }
-  .navbarSettings {
-    order: 2;
-    width: 15%;
   }
   .navbarCopyrights {
     display: none;
