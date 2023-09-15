@@ -1,8 +1,9 @@
 import styles from 'styles/components/organisms/Navbar.module.scss'
 import Logo from 'assets/logo-example.png'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({ navigations }) => {
   const [isScroll, setIsScroll] = useState(false)
   const [isMobileButtonClicked, setIsMobileButtonClicked] = useState(false)
 
@@ -14,12 +15,12 @@ const Navbar = () => {
   const navbarMobileButtonClassName = `${ styles.navbarMobileButton } 
   ${ isMobileButtonClicked && styles.navbarMobileButtonActive }`
 
-  // Change navbar background color on scroll
+  // Change navbar background color when page is scrolled
   const changeNavbarColor = () => {
     window.scrollY > 0 ? setIsScroll(true) : setIsScroll(false)
   }
 
-  // useEffect renders once on the page first load
+  // useEffect renders the function above when scrolling page
   useEffect(() => {
     window.addEventListener('scroll', changeNavbarColor)
     return () => {
@@ -29,7 +30,7 @@ const Navbar = () => {
 
   return(
     <nav className={ navbarClassName }>
-      <div className={ styles.navbarLogoAndMobileButton }>
+      <section className={ styles.navbarLogoAndMobileButton }>
         <img alt='logo' className={ styles.navbarLogo } src={ Logo }/>
         {/* Mobile Button means Hamburger Menu */}
         <div 
@@ -40,21 +41,30 @@ const Navbar = () => {
           <span className={ styles.navbarMobileBar }/>
           <span className={ styles.navbarMobileBar }/>
         </div>
-      </div>
-      <div className={ styles.navbarItems }>
-        <div className={ styles.navbarNavigationGroup }>
-          <div className={ styles.navbarNavigationButton }>Operators</div>
-          <div className={ styles.navbarNavigationButton }>Rankings</div>
-          <div className={ styles.navbarNavigationButton }>Guides</div>
-        </div>
+      </section>
+      <section className={ styles.navbarItems }>
         <div className={ styles.navbarSettings }>
-          <div>D/N</div>
-          <div>L</div>
+          <span>D/N</span>
+          <span>L</span>
         </div>
-        <div className={ styles.navbarCopyrights }>
+        <div className={ styles.navbarNavigationGroup }>
+          {
+            navigations.map((item) => {
+              return(
+                <Link 
+                  to={ item.path } 
+                  className={ styles.navbarNavigationButton }
+                >
+                  { item.name }
+                </Link>
+              )
+            })
+          }
+        </div>
+        <small className={ styles.navbarCopyrights }>
           Copyright 2023. Ciwin, All rights reserved.
-        </div>
-      </div>
+        </small>
+      </section>
     </nav>
   )
 }

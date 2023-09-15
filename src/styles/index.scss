@@ -10,3 +10,7 @@ body {
 #root {
   @include container(transparent, 100%, 100%);
 }
+a {
+  color: $first-color;
+  text-decoration: none;
+}
